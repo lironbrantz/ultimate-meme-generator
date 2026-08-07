@@ -84,8 +84,13 @@ function onSwitchLine() {
 }
 
 function onCanvasClick(ev) {
-    const x = ev.offsetX
-    const y = ev.offsetY
+    const rect = gElCanvas.getBoundingClientRect()
+
+    const scaleX = gElCanvas.width / rect.width
+    const scaleY = gElCanvas.height / rect.height
+
+    const x = ev.offsetX * scaleX
+    const y = ev.offsetY * scaleY
     const meme = getMeme()
 
     meme.lines.forEach((line, idx) => {
