@@ -4,7 +4,7 @@ var gElCanvas
 var gCtx
 
 function renderMeme() {
-    const img = new Image();
+    const img = new Image()
     const meme = getMeme()
     const imgs = getImgs()
     const selectdImg = imgs.find(img => img.id === meme.selectedImgId)
@@ -25,7 +25,7 @@ function renderMeme() {
     }
 
     img.src = selectdImg.url
-
+}
     function onDownloadMeme() {
         const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
 
@@ -55,4 +55,14 @@ function renderMeme() {
         decreaseFontSize()
         renderMeme()
     }
+
+
+function onAddLine() {
+    addLine()
+    renderMeme()
+}
+
+function onSwitchLine() {
+    switchLine()
+    renderMeme()
 }

@@ -36,3 +36,12 @@ function decreaseFontSize() {
     gMeme.lines[gMeme.selectedLineIdx].size -= 5
 }
 
+function addLine() {
+    const newLine = { txt: 'New Line', size: 20, color: 'black', x: 250, y: 250 }
+    gMeme.lines.push(newLine)
+}
+
+function switchLine() {
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
+}
