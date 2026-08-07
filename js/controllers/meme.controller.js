@@ -9,7 +9,7 @@ function renderMeme() {
     const line = meme.lines[0]
     const imgs = getImgs()
     const selectdImg = imgs.find(img => img.id === meme.selectedImgId)
-    
+
     img.onload = function () {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
 
@@ -24,10 +24,35 @@ function renderMeme() {
         gCtx.strokeText(line.txt, x, y)
         gCtx.fillText(line.txt, x, y)
     }
-  img.src = selectdImg.url
+    img.src = selectdImg.url
 }
+
+function onDownloadMeme() {
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+
+    const downloadLink = document.createElement('a')
+    downloadLink.href = imgDataUrl
+    downloadLink.download = 'meme.jpg'
+    downloadLink.click()
+}
+
 
 function onSetLineTxt(txt) {
     setLineTxt(txt)
+    renderMeme()
+}
+
+function onSetLineColor(color) {
+    setLineColor(color)
+    renderMeme()
+}
+
+function onIncreaseFontSize() {
+    increaseFontSize()
+    renderMeme()
+}
+
+function onDecreaseFontSize() {
+    decreaseFontSize()
     renderMeme()
 }

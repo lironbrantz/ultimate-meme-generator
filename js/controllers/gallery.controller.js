@@ -21,3 +21,4 @@ function onDownloadMeme() {
     downloadLink.download = 'meme.jpg'
     downloadLink.click()
 }
+

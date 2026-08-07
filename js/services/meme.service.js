@@ -29,3 +29,15 @@ function setLineTxt(txt) {
 function setImg(id) {
     gMeme.selectedImgId = id
 }
+
+function setLineColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color
+}
+
+function increaseFontSize() {
+    gMeme.lines[gMeme.selectedLineIdx].size += 5
+}
+
+function decreaseFontSize() {
+    gMeme.lines[gMeme.selectedLineIdx].size -= 5
+}
