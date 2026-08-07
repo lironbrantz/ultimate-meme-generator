@@ -30,6 +30,15 @@
                 <button onclick="onDecreaseFontSize()">-</button>
                 <button onclick="onAddLine()">Add Line</button>
                 <button onclick="onSwitchLine()">Switch Line</button>
+                <select onchange="onSetFont(this.value)">
+                    <option value="Arial">Arial</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Verdana">Verdana</option>
+                </select>
+                <button onclick="onSetTextAlign('left')">Left</button>
+                <button onclick="onSetTextAlign('center')">Center</button>
+                <button onclick="onSetTextAlign('right')">Right</button>
             </div>
         </section>
         </section>

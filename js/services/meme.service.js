@@ -4,8 +4,8 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }, { id: 2, u
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60 },
-    { txt: 'World', size: 20, color: 'blue', x: 250, y: 460 }]
+    lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center' },
+    { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center' }]
 }
 
 function getMeme() {
@@ -48,4 +48,18 @@ function switchLine() {
 
 function setLine(idx) {
     gMeme.selectedLineIdx = idx
+}
+
+function setFont(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font
+}
+
+function setTextAlign(align) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+
+    line.align = align
+
+    if (align === 'left') line.x = 20
+    if (align === 'center') line.x = 250
+    if (align === 'right') line.x = 480
 }

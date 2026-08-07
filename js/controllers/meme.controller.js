@@ -13,19 +13,23 @@ function renderMeme() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 
         meme.lines.forEach((line, idx) => {
-            gCtx.font = `${line.size}px Arial`
-            gCtx.textAlign = 'center'
+            gCtx.font = `${line.size}px ${line.font}`
+            gCtx.textAlign = line.align
             gCtx.fillStyle = line.color
             gCtx.strokeStyle = 'black'
             gCtx.lineWidth = 2
 
             if (idx === meme.selectedLineIdx) {
                 const textWidth = gCtx.measureText(line.txt).width
+                let boxX = line.x - textWidth / 2
+
+                if (line.align === 'left') boxX = line.x
+                if (line.align === 'right') boxX = line.x - textWidth
 
                 gCtx.strokeStyle = 'white'
 
                 gCtx.strokeRect(
-                    line.x - textWidth / 2 - 5,
+                    boxX - 5,
                     line.y - line.size,
                     textWidth + 10,
                     line.size + 10
@@ -118,4 +122,14 @@ function renderControls() {
 
     document.querySelector('.line-input').value = line.txt
     document.querySelector('.line-color').value = line.color
+}
+
+function onSetFont(font) {
+    setFont(font)
+    renderMeme()
+}
+
+function onSetTextAlign(align) {
+    setTextAlign(align)
+    renderMeme()
 }
