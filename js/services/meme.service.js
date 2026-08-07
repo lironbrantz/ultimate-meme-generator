@@ -75,4 +75,4 @@ function downTextLine() {
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     if (gMeme.selectedLineIdx > 0) gMeme.selectedLineIdx--
-}
+} 
