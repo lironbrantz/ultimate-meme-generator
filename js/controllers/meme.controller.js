@@ -7,6 +7,8 @@ function renderMeme() {
     const img = new Image();
     const meme = getMeme()
     const line = meme.lines[0]
+    const imgs = getImgs()
+    const selectdImg = imgs.find(img => img.id === meme.selectedImgId)
     
     img.onload = function () {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
@@ -22,7 +24,7 @@ function renderMeme() {
         gCtx.strokeText(line.txt, x, y)
         gCtx.fillText(line.txt, x, y)
     }
-    img.src = 'img/1.jpg'
+  img.src = selectdImg.url
 }
 
 function onSetLineTxt(txt) {

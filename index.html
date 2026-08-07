@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body onload="onInit()">
     <header class="main-header">
         <div class="logo">Meme Generator</div>
@@ -14,16 +16,18 @@
             <a href="#" id="meme-link">Memes</a>
             <a href="#" id="about-link">About</a>
         </nav>
-    </header>   
+    </header>
     <main>
-    <section class="meme-gallery"></section>
-    <section class="meme-editor">
-        <canvas class="meme-canvas" width="500" height="500"></canvas>
-        <input type="text" placeholder="Enter your meme text here" oninput="onSetLineTxt(this.value)">
-    </section>
-</main>
-<script src="js/services/meme.service.js"></script>
+        <section class="meme-gallery"></section>
+        <section class="meme-editor">
+            <canvas class="meme-canvas" width="500" height="500"></canvas>
+            <input type="text" placeholder="Enter your meme text here" oninput="onSetLineTxt(this.value)">
+        </section>
+    </main>
+    <script src="js/services/meme.service.js"></script>
     <script src="js/controllers/meme.controller.js"></script>
+    <script src="js/controllers/gallery.controller.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
