@@ -6,7 +6,7 @@
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body onload="onInit()">
     <header class="main-header">
         <div class="logo">Meme Generator</div>
         <nav class="main-nav">
@@ -17,8 +17,11 @@
     </header>   
     <main>
     <section class="meme-gallery"></section>
-    <section class="meme-editor"></section>
+    <section class="meme-editor">
+        <canvas class="meme-canvas" width="500" height="500"></canvas>
+    </section>
 </main>
+    <script src="js/controllers/meme.controller.js"></script>
     <script src="js/main.js"></script>
-    </body>
+</body>
 </html>
