@@ -12,3 +12,12 @@ function onImgSelect(imgId) {
     setImg(imgId)
     renderMeme()
 }
+
+function onDownloadMeme() {
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+
+    const downloadLink = document.createElement('a')
+    downloadLink.href = imgDataUrl
+    downloadLink.download = 'meme.jpg'
+    downloadLink.click()
+}
