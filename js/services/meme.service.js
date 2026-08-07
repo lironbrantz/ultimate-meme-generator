@@ -37,7 +37,7 @@ function decreaseFontSize() {
 }
 
 function addLine() {
-    const newLine = { txt: 'New Line', size: 20, color: 'black', x: 250, y: 250 }
+    const newLine = { txt: 'New Line', size: 20, color: 'black', x: 250, y: 250, font: 'Arial', align: 'center' }
     gMeme.lines.push(newLine)
 }
 
@@ -73,6 +73,11 @@ function downTextLine() {
 }
 
 function deleteLine() {
+    if (gMeme.lines.length === 1) return
+
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    if (gMeme.selectedLineIdx > 0) gMeme.selectedLineIdx--
-} 
+
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) {
+        gMeme.selectedLineIdx = gMeme.lines.length - 1
+    }
+}

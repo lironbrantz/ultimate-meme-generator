@@ -95,16 +95,22 @@ function onCanvasClick(ev) {
 
     const x = ev.offsetX * scaleX
     const y = ev.offsetY * scaleY
+
     const meme = getMeme()
 
-    meme.lines.forEach((line, idx) => {
-        gCtx.font = `${line.size}px Arial`
+    meme.lines.find((line, idx) => {
+        gCtx.font = `${line.size}px ${line.font}`
 
         const textWidth = gCtx.measureText(line.txt).width
 
+        let boxX = line.x - textWidth / 2
+
+        if (line.align === 'left') boxX = line.x
+        if (line.align === 'right') boxX = line.x - textWidth
+
         const isInside =
-            x >= line.x - textWidth / 2 &&
-            x <= line.x + textWidth / 2 &&
+            x >= boxX &&
+            x <= boxX + textWidth &&
             y >= line.y - line.size &&
             y <= line.y
 
@@ -112,6 +118,7 @@ function onCanvasClick(ev) {
             setLine(idx)
             renderMeme()
             renderControls()
+            return true
         }
     })
 }
@@ -122,6 +129,7 @@ function renderControls() {
 
     document.querySelector('.line-input').value = line.txt
     document.querySelector('.line-color').value = line.color
+    document.querySelector('.line-font').value = line.font
 }
 
 function onSetFont(font) {
@@ -147,4 +155,6 @@ function onDownTextLine() {
 function onDeleteLine() {
     deleteLine()
     renderMeme()
+    renderControls()
 }
+

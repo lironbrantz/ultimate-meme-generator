@@ -9,47 +9,80 @@
 </head>
 
 <body onload="onInit()">
+
     <header class="main-header">
         <div class="logo">Meme Generator</div>
+
         <nav class="main-nav">
-            <a href="#" id="gallery-link">Gallery</a>
-            <a href="#" id="meme-link">Memes</a>
-            <a href="#" id="about-link">About</a>
+            <a href="#" onclick="onNavTo('gallery')">Gallery</a>
+            <a href="#" onclick="onNavTo('memes')">Memes</a>
+            <a href="#" onclick="onNavTo('about')">About</a>
         </nav>
     </header>
+
     <main>
-        <section class="meme-gallery"></section>
-        <section class="meme-editor">
-            <canvas class="meme-canvas" width="500" height="500" onclick="onCanvasClick(event)"></canvas>
+
+        <section id="gallery" class="meme-gallery"></section>
+
+        <section id="editor" class="meme-editor hidden">
+
+            <canvas
+                class="meme-canvas"
+                width="500"
+                height="500"
+                onclick="onCanvasClick(event)">
+            </canvas>
+
             <div class="meme-controls">
-                <input class="line-input" type="text" placeholder="Enter your meme text here"
+
+                <input
+                    class="line-input"
+                    type="text"
+                    placeholder="Enter your meme text here"
                     oninput="onSetLineTxt(this.value)">
+
                 <button onclick="onDownloadMeme()">Download</button>
-                <input class="line-color" type="color" oninput="onSetLineColor(this.value)">
+
+                <input
+                    class="line-color"
+                    type="color"
+                    oninput="onSetLineColor(this.value)">
+
                 <button onclick="onIncreaseFontSize()">+</button>
                 <button onclick="onDecreaseFontSize()">-</button>
+
                 <button onclick="onAddLine()">Add Line</button>
                 <button onclick="onSwitchLine()">Switch Line</button>
-                <select onchange="onSetFont(this.value)">
+
+                <select class="line-font" onchange="onSetFont(this.value)">
                     <option value="Arial">Arial</option>
                     <option value="Tahoma">Tahoma</option>
                     <option value="Impact">Impact</option>
                     <option value="Verdana">Verdana</option>
                 </select>
+
                 <button onclick="onSetTextAlign('left')">Left</button>
                 <button onclick="onSetTextAlign('center')">Center</button>
                 <button onclick="onSetTextAlign('right')">Right</button>
+
                 <button onclick="onUpTextLine()">Up</button>
                 <button onclick="onDownTextLine()">Down</button>
+
                 <button onclick="onDeleteLine()">Delete Line</button>
+
             </div>
         </section>
-        </section>
+
+        <section id="memes" class="hidden"></section>
+
+        <section id="about" class="hidden"></section>
+
     </main>
+
     <script src="js/services/meme.service.js"></script>
     <script src="js/controllers/meme.controller.js"></script>
     <script src="js/controllers/gallery.controller.js"></script>
     <script src="js/main.js"></script>
-</body>
 
+</body>
 </html>

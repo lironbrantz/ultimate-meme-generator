@@ -6,4 +6,10 @@ function onInit() {
 
     renderGallery()
     renderMeme()
+    renderControls()
+}
+
+function onNavTo(page) {
+    document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'))
+    document.getElementById(page).classList.remove('hidden')
 }
