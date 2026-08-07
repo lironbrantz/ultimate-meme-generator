@@ -20,10 +20,10 @@
     <main>
         <section class="meme-gallery"></section>
         <section class="meme-editor">
-            <canvas class="meme-canvas" width="500" height="500"></canvas>
-            <input type="text" placeholder="Enter your meme text here" oninput="onSetLineTxt(this.value)">
+            <canvas class="meme-canvas" width="500" height="500" onclick="onCanvasClick(event)"></canvas>
+            <input class ="line-input" type="text" placeholder="Enter your meme text here" oninput="onSetLineTxt(this.value)">
             <button onclick="onDownloadMeme()">Download</button>
-            <input type="color" oninput="onSetLineColor(this.value)">
+            <input class="line-color" type="color" oninput="onSetLineColor(this.value)">
             <button onclick="onIncreaseFontSize()">+</button>
             <button onclick="onDecreaseFontSize()">-</button>
             <button onclick="onAddLine()">Add Line</button>
