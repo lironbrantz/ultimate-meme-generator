@@ -11,7 +11,7 @@
 <body onload="onInit()">
 
     <header class="main-header">
-        <div class="logo">Meme Generator</div>
+        <div class="logo"> <img src="img/logo/LOGO.png" alt="Meme Generator"> </div>
 
         <nav class="main-nav">
             <a href="#" onclick="onNavTo('gallery')">Gallery</a>
@@ -26,27 +26,17 @@
 
         <section id="editor" class="meme-editor hidden">
 
-            <canvas
-                class="meme-canvas"
-                width="500"
-                height="500"
-                onclick="onCanvasClick(event)">
+            <canvas class="meme-canvas" width="500" height="500" onclick="onCanvasClick(event)">
             </canvas>
 
             <div class="meme-controls">
 
-                <input
-                    class="line-input"
-                    type="text"
-                    placeholder="Enter your meme text here"
+                <input class="line-input" type="text" placeholder="Enter your meme text here"
                     oninput="onSetLineTxt(this.value)">
 
                 <button onclick="onDownloadMeme()">Download</button>
 
-                <input
-                    class="line-color"
-                    type="color"
-                    oninput="onSetLineColor(this.value)">
+                <input class="line-color" type="color" oninput="onSetLineColor(this.value)">
 
                 <button onclick="onIncreaseFontSize()">+</button>
                 <button onclick="onDecreaseFontSize()">-</button>
@@ -85,4 +75,5 @@
     <script src="js/main.js"></script>
 
 </body>
+
 </html>

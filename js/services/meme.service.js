@@ -1,6 +1,25 @@
 'use strict';
 
-var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }, { id: 2, url: 'img/2.jpg', keywords: ['funny', 'dog'] }];
+var gImgs = [
+    { id: 1, url: 'img/gallery/1.jpg', keywords: ['funny'] },
+    { id: 2, url: 'img/gallery/2.jpg', keywords: ['funny'] },
+    { id: 3, url: 'img/gallery/3.jpg', keywords: ['funny'] },
+    { id: 4, url: 'img/gallery/4.jpg', keywords: ['funny'] },
+    { id: 5, url: 'img/gallery/5.jpg', keywords: ['funny'] },
+    { id: 6, url: 'img/gallery/6.jpg', keywords: ['funny'] },
+    { id: 7, url: 'img/gallery/7.jpg', keywords: ['funny'] },
+    { id: 8, url: 'img/gallery/8.jpg', keywords: ['funny'] },
+    { id: 9, url: 'img/gallery/9.jpg', keywords: ['funny'] },
+    { id: 10, url: 'img/gallery/10.jpg', keywords: ['funny'] },
+    { id: 11, url: 'img/gallery/11.jpg', keywords: ['funny'] },
+    { id: 12, url: 'img/gallery/12.jpg', keywords: ['funny'] },
+    { id: 13, url: 'img/gallery/13.jpg', keywords: ['funny'] },
+    { id: 14, url: 'img/gallery/14.jpg', keywords: ['funny'] },
+    { id: 15, url: 'img/gallery/15.jpg', keywords: ['funny'] },
+    { id: 16, url: 'img/gallery/16.jpg', keywords: ['funny'] },
+    { id: 17, url: 'img/gallery/17.jpg', keywords: ['funny'] },
+    { id: 18, url: 'img/gallery/18.jpg', keywords: ['funny'] }
+];
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
