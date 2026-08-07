@@ -63,3 +63,16 @@ function setTextAlign(align) {
     if (align === 'center') line.x = 250
     if (align === 'right') line.x = 480
 }
+
+function upTextLine() {
+    gMeme.lines[gMeme.selectedLineIdx].y -= 5
+}
+
+function downTextLine() {
+    gMeme.lines[gMeme.selectedLineIdx].y += 5
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    if (gMeme.selectedLineIdx > 0) gMeme.selectedLineIdx--
+}

@@ -133,3 +133,18 @@ function onSetTextAlign(align) {
     setTextAlign(align)
     renderMeme()
 }
+
+function onUpTextLine() {
+    upTextLine()
+    renderMeme()
+}
+
+function onDownTextLine() {
+    downTextLine()
+    renderMeme()
+}
+
+function onDeleteLine() {
+    deleteLine()
+    renderMeme()
+}
