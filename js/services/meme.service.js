@@ -4,14 +4,8 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }, { id: 2, u
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'Hello'
-            ,
-            size: 20,
-            color: 'red'
-        }
-    ]
+    lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60 },
+    { txt: 'World', size: 20, color: 'blue', x: 250, y: 460 }]
 }
 
 function getMeme() {
@@ -41,3 +35,4 @@ function increaseFontSize() {
 function decreaseFontSize() {
     gMeme.lines[gMeme.selectedLineIdx].size -= 5
 }
+
