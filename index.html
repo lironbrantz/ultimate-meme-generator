@@ -34,31 +34,65 @@
                 <input class="line-input" type="text" placeholder="Enter your meme text here"
                     oninput="onSetLineTxt(this.value)">
 
-                <button onclick="onDownloadMeme()">Download</button>
+                <div class="line-actions">
+                    <button onclick="onSwitchLine()">
+                        <img src="img/Icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="Switch line">
+                    </button>
 
-                <input class="line-color" type="color" oninput="onSetLineColor(this.value)">
+                    <button onclick="onAddLine()">
+                        <img src="img/Icons/add.png" alt="Add line">
+                    </button>
 
-                <button onclick="onIncreaseFontSize()">+</button>
-                <button onclick="onDecreaseFontSize()">-</button>
+                    <button onclick="onDeleteLine()">
+                        <img src="img/Icons/trash.png" alt="Delete line">
+                    </button>
+                </div>
 
-                <button onclick="onAddLine()">Add Line</button>
-                <button onclick="onSwitchLine()">Switch Line</button>
+                <div class="font-size-actions">
+                    <button onclick="onIncreaseFontSize()">
+                        <img src="img/Icons/increase font - icon.png" alt="Increase font">
+                    </button>
 
-                <select class="line-font" onchange="onSetFont(this.value)">
-                    <option value="Arial">Arial</option>
-                    <option value="Tahoma">Tahoma</option>
-                    <option value="Impact">Impact</option>
-                    <option value="Verdana">Verdana</option>
-                </select>
+                    <button onclick="onDecreaseFontSize()">
+                        <img src="img/Icons/decrease font - icon.png" alt="Decrease font">
+                    </button>
+                </div>
 
-                <button onclick="onSetTextAlign('left')">Left</button>
-                <button onclick="onSetTextAlign('center')">Center</button>
-                <button onclick="onSetTextAlign('right')">Right</button>
+                <div class="align-actions">
+                    <button onclick="onSetTextAlign('left')">
+                        <img src="img/Icons/align-to-left.png" alt="Align left">
+                    </button>
 
-                <button onclick="onUpTextLine()">Up</button>
-                <button onclick="onDownTextLine()">Down</button>
+                    <button onclick="onSetTextAlign('center')">
+                        <img src="img/Icons/center-text-alignment.png" alt="Align center">
+                    </button>
 
-                <button onclick="onDeleteLine()">Delete Line</button>
+                    <button onclick="onSetTextAlign('right')">
+                        <img src="img/Icons/align-to-right.png" alt="Align right">
+                    </button>
+                </div>
+
+                <div class="font-actions">
+                    <select class="line-font" onchange="onSetFont(this.value)">
+                        <option value="Arial">Arial</option>
+                        <option value="Tahoma">Tahoma</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+
+                    <label class="color-btn">
+                        <img src="img/Icons/paint-board-and-brush.png" alt="Text color">
+
+                        <input class="line-color" type="color" oninput="onSetLineColor(this.value)">
+                    </label>
+                </div>
+
+                <div class="position-actions">
+                    <button onclick="onUpTextLine()" title="Move text up">↑</button>
+                    <button onclick="onDownTextLine()" title="Move text down">↓</button>
+                </div>
+
+                <button class="download-btn" onclick="onDownloadMeme()">Download</button>
 
             </div>
         </section>
