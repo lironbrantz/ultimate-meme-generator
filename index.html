@@ -21,7 +21,10 @@
     </header>
 
     <main>
-
+        <section id="memes" class="hidden">
+            <h2>Saved Memes</h2>
+            <div class="saved-memes-grid"></div>
+        </section>
         <section id="gallery" class="meme-gallery"></section>
 
         <section id="editor" class="meme-editor hidden">
@@ -93,16 +96,14 @@
                 </div>
 
                 <button class="download-btn" onclick="onDownloadMeme()">Download</button>
+                <button class="save-btn" onclick="saveMeme()">Save Meme</button>
 
             </div>
         </section>
-
-        <section id="memes" class="hidden"></section>
-
         <section id="about" class="hidden"></section>
 
     </main>
-
+    <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/controllers/meme.controller.js"></script>
     <script src="js/controllers/gallery.controller.js"></script>

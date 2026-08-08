@@ -15,3 +15,29 @@ function onImgSelect(imgId) {
     onNavTo('editor')
 }
 
+function renderSavedMemes() {
+    const savedMemes = getSavedMemes()
+
+    const strHTMLs = savedMemes.map((meme, idx) => {
+        const img = getImgs().find(img => img.id === meme.selectedImgId)
+
+        return `
+            <img
+                src="${img.url}"
+                onclick="onSavedMemeSelect(${idx})">
+        `
+    })
+
+    document.querySelector('.saved-memes-grid').innerHTML = strHTMLs.join('')
+}
+
+function onSavedMemeSelect(memeIdx) {
+    const savedMemes = getSavedMemes()
+    const selectedMeme = savedMemes[memeIdx]
+
+    const memeCopy = JSON.parse(JSON.stringify(selectedMeme))
+    setMeme(memeCopy)
+    renderControls()
+    renderMeme()
+    onNavTo('editor')
+}

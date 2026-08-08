@@ -158,3 +158,8 @@ function onDeleteLine() {
     renderControls()
 }
 
+
+function onSaveMeme() {
+    saveMeme()
+    renderSavedMemes()
+}

@@ -1,5 +1,9 @@
 'use strict';
 
+const STORAGE_KEY = 'savedMemes'
+
+var gSavedMemes = loadFromStorage(STORAGE_KEY) 
+
 var gImgs = [
     { id: 1, url: 'img/gallery/1.jpg', keywords: ['funny'] },
     { id: 2, url: 'img/gallery/2.jpg', keywords: ['funny'] },
@@ -99,4 +103,19 @@ function deleteLine() {
     if (gMeme.selectedLineIdx >= gMeme.lines.length) {
         gMeme.selectedLineIdx = gMeme.lines.length - 1
     }
+}
+
+function saveMeme() {
+    const memeCopy = JSON.parse(JSON.stringify(gMeme))
+
+    gSavedMemes.push(memeCopy)
+    saveToStorage(STORAGE_KEY, gSavedMemes)
+}
+
+function setMeme(meme) {
+    gMeme = meme
+}
+
+function getSavedMemes() {
+    return gSavedMemes
 }
