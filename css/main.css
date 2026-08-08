@@ -149,6 +149,14 @@ body {
     font-weight: bold;
 }
 
+.meme-controls .save-btn {
+  width: 100%;
+    background-color: #ff7f00;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 .hidden { display: none; }
 
 @media (max-width: 700px) {
