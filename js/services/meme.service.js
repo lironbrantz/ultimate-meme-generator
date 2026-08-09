@@ -193,3 +193,14 @@ async function uploadImg(imgData, onSuccess) {
         console.log(err)
     }
 }
+
+function setImgFromDevice(img) {
+    const newImg = {
+        id: gImgs.length + 1,
+        url: img.src,
+        keywords: []
+    }
+
+    gImgs.push(newImg)
+    gMeme.selectedImgId = newImg.id
+}

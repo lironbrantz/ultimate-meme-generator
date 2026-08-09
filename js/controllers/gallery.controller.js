@@ -47,13 +47,10 @@ function onSetFilter(filterBy) {
     renderGallery()
 }
 
-function renderKeywords() {
-    const keywordMap = getKeywordSearchCountMap()
-    const keywords = Object.keys(keywordMap)
-
-    const strHTMLs = keywords.map(keyword => {
-        return `<option value="${keyword}">`
+function onImgInput(ev) {
+    loadImageFromInput(ev, img => {
+        setImgFromDevice(img)
+        onNavTo('editor')
+        renderMeme()
     })
-
-    document.getElementById('keywords').innerHTML = strHTMLs.join('')
 }

@@ -250,3 +250,16 @@ function onSuccess(uploadedImgUrl) {
         `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}`
     )
 }
+
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = function (event) {
+        const img = new Image()
+
+        img.onload = () => onImageReady(img)
+        img.src = event.target.result
+    }
+
+    reader.readAsDataURL(ev.target.files[0])
+}
