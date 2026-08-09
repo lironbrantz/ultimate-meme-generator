@@ -50,7 +50,9 @@
 
         <section id="editor" class="meme-editor hidden">
 
-            <canvas class="meme-canvas" width="500" height="500" onclick="onCanvasClick(event)">
+            <canvas class="meme-canvas" width="500" height="500" onmousedown="onCanvasClick(event)"
+                onmousemove="onMove(event)" onmouseup="onUp()" ontouchstart="onCanvasClick(event)"
+                ontouchmove="onMove(event)" ontouchend="onUp()">
             </canvas>
 
             <div class="meme-controls">

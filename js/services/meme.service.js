@@ -6,6 +6,7 @@ var gSavedMemes = loadFromStorage(STORAGE_KEY)
 var gEmojis = ['😍', '😜', '😂', '😎', '🥳', '😭', '🤡', '😇']
 var gEmojiIdx = 0
 
+
 var gFilterBy = ''
 var gImgs = [
     { id: 1, url: 'img/gallery/1.jpg', keywords: ['funny', 'politics'] },
@@ -158,4 +159,11 @@ function prevStickers() {
     if (gEmojiIdx > 0) {
         gEmojiIdx--
     }
+}
+
+function moveLine(x, y) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+
+    line.x = x
+    line.y = y
 }

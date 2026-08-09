@@ -2,6 +2,8 @@
 
 var gElCanvas
 var gCtx
+var gIsDragging = false
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function renderMeme() {
     const img = new Image()
@@ -88,15 +90,18 @@ function onSwitchLine() {
 }
 
 function onCanvasClick(ev) {
-    const rect = gElCanvas.getBoundingClientRect()
+    const pos = getEvPos(ev)
 
+    const rect = gElCanvas.getBoundingClientRect()
     const scaleX = gElCanvas.width / rect.width
     const scaleY = gElCanvas.height / rect.height
 
-    const x = ev.offsetX * scaleX
-    const y = ev.offsetY * scaleY
+    const x = pos.x * scaleX
+    const y = pos.y * scaleY
 
     const meme = getMeme()
+
+    gIsDragging = false
 
     meme.lines.find((line, idx) => {
         gCtx.font = `${line.size}px ${line.font}`
@@ -116,13 +121,15 @@ function onCanvasClick(ev) {
 
         if (isInside) {
             setLine(idx)
+            gIsDragging = true
+
             renderMeme()
             renderControls()
+
             return true
         }
     })
 }
-
 function renderControls() {
     const meme = getMeme()
     const line = meme.lines[meme.selectedLineIdx]
@@ -164,9 +171,9 @@ function onSaveMeme() {
     renderSavedMemes()
 }
 
-function onAddSticker (emoji) {
+function onAddSticker(emoji) {
     addSticker(emoji)
-     renderMeme()
+    renderMeme()
 }
 
 function renderStickers() {
@@ -187,4 +194,45 @@ function onNextStickers() {
 function onPrevStickers() {
     prevStickers()
     renderStickers()
+}
+
+
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+
+    if (['touchstart', 'touchmove', 'touchend'].includes(ev.type)) {
+        ev.preventDefault()
+
+        ev = ev.changedTouches[0]
+
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+        }
+    }
+
+    return pos
+}
+
+function onMove(ev) {
+    if (!gIsDragging) return
+
+    const pos = getEvPos(ev)
+
+    const rect = gElCanvas.getBoundingClientRect()
+    const scaleX = gElCanvas.width / rect.width
+    const scaleY = gElCanvas.height / rect.height
+
+    const x = pos.x * scaleX
+    const y = pos.y * scaleY
+
+    moveLine(x, y)
+    renderMeme()
+}
+function onUp() {
+    gIsDragging = false
 }
