@@ -8,6 +8,7 @@ function onInit() {
     renderSavedMemes()
     renderMeme()
     renderControls()
+    renderStickers()
 }
 
 function onNavTo(page) {

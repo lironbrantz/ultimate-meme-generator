@@ -182,9 +182,36 @@ body {
         padding: 15px;
         gap: 20px;
     }
-t
     .meme-canvas,
     .meme-controls {
         width: 100%;
     }
+}
+
+.stickers-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.stickers-carousel button {
+    border: 0;
+    background: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.stickers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.stickers span {
+    font-size: 2rem;
+    cursor: pointer;
 }

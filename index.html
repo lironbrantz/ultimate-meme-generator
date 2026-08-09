@@ -30,19 +30,19 @@
             <input class="search-input" type="search" list="keywords" placeholder="Search meme"
                 oninput="onSetFilter(this.value)">
             <datalist id="keywords">
-            <option value="funny">
+                <option value="funny">
                 <option value="cat">
-                    <option value="dog">
-                        <option value="baby">
-                            <option value="politics">
-                                <option value="movie">
-                                    <option value="tv">
-                                        <option value="sport">
-                                            <option value="gaming">
-                                                <option value="music">
-                                                    <option value="celebrity">
-                                                        <option value="cartoon">
-                                                            <option value="meme">
+                <option value="dog">
+                <option value="baby">
+                <option value="politics">
+                <option value="movie">
+                <option value="tv">
+                <option value="sport">
+                <option value="gaming">
+                <option value="music">
+                <option value="celebrity">
+                <option value="cartoon">
+                <option value="meme">
             </datalist>
             <div class="meme-gallery"></div>
 
@@ -119,7 +119,13 @@
                 <button class="download-btn" onclick="onDownloadMeme()">Download</button>
                 <button class="save-btn" onclick="saveMeme()">Save Meme</button>
 
-            </div>
+                <div class="stickers-carousel">
+                    <button onclick="onPrevStickers()">‹</button>
+
+                    <div class="stickers"></div>
+
+                    <button onclick="onNextStickers()">›</button>
+                </div>
         </section>
         <section id="about" class="hidden"></section>
 

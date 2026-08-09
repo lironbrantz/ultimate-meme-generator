@@ -3,6 +3,8 @@
 const STORAGE_KEY = 'savedMemes'
 
 var gSavedMemes = loadFromStorage(STORAGE_KEY)
+var gEmojis = ['😍', '😜', '😂', '😎', '🥳', '😭', '🤡', '😇']
+var gEmojiIdx = 0
 
 var gFilterBy = ''
 var gImgs = [
@@ -126,4 +128,34 @@ function getSavedMemes() {
 
 function setFilter(filterBy) {
     gFilterBy = filterBy.toLowerCase()
+}
+
+function addSticker(emoji) {
+    const sticker = {
+        txt: emoji,
+        size: 50,
+        color: 'black',
+        x: 250,
+        y: 250,
+        font: 'Arial',
+        align: 'center'
+    }
+
+    gMeme.lines.push(sticker)
+}
+
+function getEmojis() {
+    return gEmojis.slice(gEmojiIdx, gEmojiIdx + 5)
+}
+
+function nextStickers() {
+    if (gEmojiIdx < gEmojis.length - 5) {
+        gEmojiIdx++
+    }
+}
+
+function prevStickers() {
+    if (gEmojiIdx > 0) {
+        gEmojiIdx--
+    }
 }

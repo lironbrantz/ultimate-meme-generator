@@ -164,3 +164,27 @@ function onSaveMeme() {
     renderSavedMemes()
 }
 
+function onAddSticker (emoji) {
+    addSticker(emoji)
+     renderMeme()
+}
+
+function renderStickers() {
+    const emojis = getEmojis()
+
+    const strHTMLs = emojis.map(emoji => {
+        return `<span onclick="onAddSticker('${emoji}')">${emoji}</span>`
+    })
+
+    document.querySelector('.stickers').innerHTML = strHTMLs.join('')
+}
+
+function onNextStickers() {
+    nextStickers()
+    renderStickers()
+}
+
+function onPrevStickers() {
+    prevStickers()
+    renderStickers()
+}
