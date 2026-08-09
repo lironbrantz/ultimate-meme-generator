@@ -54,3 +54,26 @@ function onImgInput(ev) {
         renderMeme()
     })
 }
+
+
+function renderKeywords() {
+    const keywords = getKeywordSearchCountMap()
+
+    const strHTMLs = Object.keys(keywords).map(keyword => {
+        const fontSize = keywords[keyword] * 2 + 10
+
+        return `<span onclick="onKeywordSelect('${keyword}')" style="font-size: ${fontSize}px"> ${keyword} </span>`
+    })
+
+    document.querySelector('.keywords').innerHTML = strHTMLs.join(' ')
+}
+
+function onKeywordSelect(keyword) {
+    increaseKeywordSearchCount(keyword)
+    setFilter(keyword)
+
+    document.querySelector('.search-input').value = keyword
+
+    renderKeywords()
+    renderGallery()
+}

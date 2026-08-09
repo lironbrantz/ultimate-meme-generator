@@ -34,7 +34,7 @@ var gMeme = {
     lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center' },
     { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center' }]
 }
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+var gKeywordSearchCountMap = {funny: 12, politics: 6, animal: 8,dog: 10, baby: 7, movie: 14, cat: 16, sports: 5,cartoon: 4}
 
 function getMeme() {
     return gMeme
@@ -203,4 +203,12 @@ function setImgFromDevice(img) {
 
     gImgs.push(newImg)
     gMeme.selectedImgId = newImg.id
+}
+
+function getKeywordSearchCountMap() {
+    return gKeywordSearchCountMap
+}
+
+function increaseKeywordSearchCount(keyword) {
+    gKeywordSearchCountMap[keyword]++
 }

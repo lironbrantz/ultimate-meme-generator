@@ -30,21 +30,17 @@
 
         <section id="gallery">
             <div class="gallery-tools">
-                <input
-                    class="search-input"
-                    type="search"
-                    list="keywords"
-                    placeholder="Search meme"
+                <input class="search-input" type="search" list="keywords" placeholder="Search meme"
                     oninput="onSetFilter(this.value)">
 
                 <label class="upload-btn">
                     Upload Image
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onchange="onImgInput(event)">
+                    <input type="file" accept="image/*" onchange="onImgInput(event)">
                 </label>
             </div>
+
+
+            <div class="keywords"></div>
 
             <datalist id="keywords">
                 <option value="funny">
@@ -66,23 +62,13 @@
         </section>
 
         <section id="editor" class="meme-editor hidden">
-            <canvas
-                class="meme-canvas"
-                width="500"
-                height="500"
-                onmousedown="onCanvasClick(event)"
-                onmousemove="onMove(event)"
-                onmouseup="onUp()"
-                ontouchstart="onCanvasClick(event)"
-                ontouchmove="onMove(event)"
-                ontouchend="onUp()">
+            <canvas class="meme-canvas" width="500" height="500" onmousedown="onCanvasClick(event)"
+                onmousemove="onMove(event)" onmouseup="onUp()" ontouchstart="onCanvasClick(event)"
+                ontouchmove="onMove(event)" ontouchend="onUp()">
             </canvas>
 
             <div class="meme-controls">
-                <input
-                    class="line-input"
-                    type="text"
-                    placeholder="Enter your meme text here"
+                <input class="line-input" type="text" placeholder="Enter your meme text here"
                     oninput="onSetLineTxt(this.value)">
 
                 <div class="line-actions">

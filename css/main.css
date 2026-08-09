@@ -230,6 +230,28 @@ body {
 .hidden {
     display: none;
 }
+.keywords {
+    max-width: 1000px;
+    margin: 15px auto 25px;
+    padding: 18px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    background-color: #ff7f00;
+}
+
+.keywords span {
+    color: white;
+    cursor: pointer;
+}
+
+.keywords span:hover {
+    opacity: 0.8;
+}
 
 @media (max-width: 800px) {
     .meme-editor {
@@ -258,4 +280,9 @@ body {
     .gallery-tools {
         flex-direction: column;
     }
+       .keywords {
+        margin-inline: 15px;
+        gap: 10px;
+    }
 }
+
