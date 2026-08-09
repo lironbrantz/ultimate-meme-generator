@@ -236,3 +236,17 @@ function onMove(ev) {
 function onUp() {
     gIsDragging = false
 }
+
+function onShareMeme() {
+    gElCanvas.toBlob(blob => {
+        uploadImg(blob, onSuccess)
+    })
+}
+
+function onSuccess(uploadedImgUrl) {
+    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+
+    window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}`
+    )
+}

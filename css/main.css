@@ -156,6 +156,13 @@ body {
     font-size: 1rem;
     font-weight: bold;
 }
+.meme-controls .share-btn {
+  width: 100%;
+    background-color: #ff7f00;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
 
 .hidden { display: none; }
 
