@@ -25,7 +25,28 @@
             <h2>Saved Memes</h2>
             <div class="saved-memes-grid"></div>
         </section>
-        <section id="gallery" class="meme-gallery"></section>
+        <section id="gallery">
+
+            <input class="search-input" type="search" list="keywords" placeholder="Search meme"
+                oninput="onSetFilter(this.value)">
+            <datalist id="keywords">
+            <option value="funny">
+                <option value="cat">
+                    <option value="dog">
+                        <option value="baby">
+                            <option value="politics">
+                                <option value="movie">
+                                    <option value="tv">
+                                        <option value="sport">
+                                            <option value="gaming">
+                                                <option value="music">
+                                                    <option value="celebrity">
+                                                        <option value="cartoon">
+                                                            <option value="meme">
+            </datalist>
+            <div class="meme-gallery"></div>
+
+        </section>
 
         <section id="editor" class="meme-editor hidden">
 

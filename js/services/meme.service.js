@@ -2,41 +2,45 @@
 
 const STORAGE_KEY = 'savedMemes'
 
-var gSavedMemes = loadFromStorage(STORAGE_KEY) 
+var gSavedMemes = loadFromStorage(STORAGE_KEY)
 
+var gFilterBy = ''
 var gImgs = [
-    { id: 1, url: 'img/gallery/1.jpg', keywords: ['funny'] },
-    { id: 2, url: 'img/gallery/2.jpg', keywords: ['funny'] },
-    { id: 3, url: 'img/gallery/3.jpg', keywords: ['funny'] },
-    { id: 4, url: 'img/gallery/4.jpg', keywords: ['funny'] },
-    { id: 5, url: 'img/gallery/5.jpg', keywords: ['funny'] },
-    { id: 6, url: 'img/gallery/6.jpg', keywords: ['funny'] },
-    { id: 7, url: 'img/gallery/7.jpg', keywords: ['funny'] },
-    { id: 8, url: 'img/gallery/8.jpg', keywords: ['funny'] },
-    { id: 9, url: 'img/gallery/9.jpg', keywords: ['funny'] },
-    { id: 10, url: 'img/gallery/10.jpg', keywords: ['funny'] },
-    { id: 11, url: 'img/gallery/11.jpg', keywords: ['funny'] },
+    { id: 1, url: 'img/gallery/1.jpg', keywords: ['funny', 'politics'] },
+    { id: 2, url: 'img/gallery/2.jpg', keywords: ['funny', 'animal', 'dog'] },
+    { id: 3, url: 'img/gallery/3.jpg', keywords: ['funny', 'baby', 'dog'] },
+    { id: 4, url: 'img/gallery/4.jpg', keywords: ['funny', 'animal', 'cat'] },
+    { id: 5, url: 'img/gallery/5.jpg', keywords: ['funny', 'baby'] },
+    { id: 6, url: 'img/gallery/6.jpg', keywords: ['funny', 'movie'] },
+    { id: 7, url: 'img/gallery/7.jpg', keywords: ['funny', 'baby'] },
+    { id: 8, url: 'img/gallery/8.jpg', keywords: ['funny', 'movie'] },
+    { id: 9, url: 'img/gallery/9.jpg', keywords: ['funny', 'baby'] },
+    { id: 10, url: 'img/gallery/10.jpg', keywords: ['funny', 'politics'] },
+    { id: 11, url: 'img/gallery/11.jpg', keywords: ['funny', 'sports'] },
     { id: 12, url: 'img/gallery/12.jpg', keywords: ['funny'] },
-    { id: 13, url: 'img/gallery/13.jpg', keywords: ['funny'] },
-    { id: 14, url: 'img/gallery/14.jpg', keywords: ['funny'] },
-    { id: 15, url: 'img/gallery/15.jpg', keywords: ['funny'] },
-    { id: 16, url: 'img/gallery/16.jpg', keywords: ['funny'] },
-    { id: 17, url: 'img/gallery/17.jpg', keywords: ['funny'] },
-    { id: 18, url: 'img/gallery/18.jpg', keywords: ['funny'] }
-];
+    { id: 13, url: 'img/gallery/13.jpg', keywords: ['funny', 'movie'] },
+    { id: 14, url: 'img/gallery/14.jpg', keywords: ['funny', 'movie'] },
+    { id: 15, url: 'img/gallery/15.jpg', keywords: ['funny', 'movie'] },
+    { id: 16, url: 'img/gallery/16.jpg', keywords: ['funny', 'movie'] },
+    { id: 17, url: 'img/gallery/17.jpg', keywords: ['funny', 'politics'] },
+    { id: 18, url: 'img/gallery/18.jpg', keywords: ['funny', 'cartoon'] }
+]
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center' },
     { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center' }]
 }
+var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getMeme() {
     return gMeme
 }
 
 function getImgs() {
-    return gImgs
+    if (!gFilterBy) return gImgs
+
+    return gImgs.filter(img => { return img.keywords.some(keyword => keyword.includes(gFilterBy)) })
 }
 
 function setLineTxt(txt) {
@@ -118,4 +122,8 @@ function setMeme(meme) {
 
 function getSavedMemes() {
     return gSavedMemes
+}
+
+function setFilter(filterBy) {
+    gFilterBy = filterBy.toLowerCase()
 }

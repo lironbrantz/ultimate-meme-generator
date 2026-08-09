@@ -41,3 +41,19 @@ function onSavedMemeSelect(memeIdx) {
     renderMeme()
     onNavTo('editor')
 }
+
+function onSetFilter(filterBy) {
+    setFilter(filterBy)
+    renderGallery()
+}
+
+function renderKeywords() {
+    const keywordMap = getKeywordSearchCountMap()
+    const keywords = Object.keys(keywordMap)
+
+    const strHTMLs = keywords.map(keyword => {
+        return `<option value="${keyword}">`
+    })
+
+    document.getElementById('keywords').innerHTML = strHTMLs.join('')
+}
