@@ -283,23 +283,24 @@ function onPrevStickers() {
 
 
 function getEvPos(ev) {
-    let pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
+    const rect = gElCanvas.getBoundingClientRect()
 
-    if (['touchstart', 'touchmove', 'touchend'].includes(ev.type)) {
+    let clientX = ev.clientX
+    let clientY = ev.clientY
+
+    if (ev.changedTouches) {
         ev.preventDefault()
 
-        ev = ev.changedTouches[0]
+        const touch = ev.changedTouches[0]
 
-        pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
-        }
+        clientX = touch.clientX
+        clientY = touch.clientY
     }
 
-    return pos
+    return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+    }
 }
 
 function onMove(ev) {
@@ -371,3 +372,4 @@ function loadImageFromInput(ev, onImageReady) {
 
     reader.readAsDataURL(ev.target.files[0])
 }
+
