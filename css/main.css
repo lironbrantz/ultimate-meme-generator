@@ -57,13 +57,33 @@ body {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
+}
+
+.upload-btn:hover {
+    background-color: #e57200;
+}
+
+.upload-btn:active {
+    transform: scale(0.97);
 }
 
 .upload-btn input {
     display: none;
 }
 
-.meme-gallery {
+#memes h2 {
+    max-width: 1000px;
+    margin: 28px auto 20px;
+
+    color: #ff7f00;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.meme-gallery,
+.saved-memes-grid {
     max-width: 1000px;
     margin: 30px auto;
     padding-inline: 15px;
@@ -72,7 +92,8 @@ body {
     gap: 16px;
 }
 
-.meme-gallery img {
+.meme-gallery img,
+.saved-memes-grid img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
@@ -80,7 +101,8 @@ body {
     cursor: pointer;
 }
 
-.meme-gallery img:hover {
+.meme-gallery img:hover,
+.saved-memes-grid img:hover {
     opacity: 0.85;
 }
 
@@ -136,6 +158,17 @@ body {
 .meme-controls button {
     background-color: white;
     cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
+}
+
+.meme-controls button:hover,
+.color-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.meme-controls button:active,
+.color-btn:active {
+    transform: scale(0.95);
 }
 
 .line-actions button,
@@ -173,6 +206,7 @@ body {
     justify-content: center;
     background-color: white;
     cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
 }
 
 .color-btn img {
@@ -197,6 +231,12 @@ body {
     color: white;
     font-size: 1rem;
     font-weight: bold;
+}
+
+.meme-controls .download-btn:hover,
+.meme-controls .save-btn:hover,
+.meme-controls .share-btn:hover {
+    background-color: #e57200;
 }
 
 .stickers-carousel {
@@ -225,6 +265,11 @@ body {
 .stickers span {
     font-size: 2rem;
     cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.stickers span:hover {
+    transform: scale(1.2);
 }
 
 .hidden {
@@ -280,9 +325,22 @@ body {
     .gallery-tools {
         flex-direction: column;
     }
-       .keywords {
+
+    .keywords {
         margin-inline: 15px;
         gap: 10px;
+    }
+
+    #memes h2 {
+        margin: 15px auto;
+        font-size: 1.5rem;
+    }
+
+    .meme-gallery,
+    .saved-memes-grid {
+        margin-block: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
     }
 }
 
