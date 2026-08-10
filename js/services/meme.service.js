@@ -20,7 +20,7 @@ var gImgs = [
     { id: 9, url: 'img/gallery/9.jpg', keywords: ['funny', 'baby'] },
     { id: 10, url: 'img/gallery/10.jpg', keywords: ['funny', 'politics'] },
     { id: 11, url: 'img/gallery/11.jpg', keywords: ['funny', 'sports'] },
-    { id: 12, url: 'img/gallery/12.jpg', keywords: ['funny'] },
+    { id: 12, url: 'img/gallery/12.jpg', keywords: ['funny', 'tv'] },
     { id: 13, url: 'img/gallery/13.jpg', keywords: ['funny', 'movie'] },
     { id: 14, url: 'img/gallery/14.jpg', keywords: ['funny', 'movie'] },
     { id: 15, url: 'img/gallery/15.jpg', keywords: ['funny', 'movie'] },
@@ -34,7 +34,7 @@ var gMeme = {
     lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center' },
     { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center' }]
 }
-var gKeywordSearchCountMap = {funny: 12, politics: 6, animal: 8,dog: 10, baby: 7, movie: 14, cat: 16, sports: 5,cartoon: 4}
+var gKeywordSearchCountMap = {funny: 12, politics: 6, animal: 8,dog: 10, baby: 7, movie: 14, cat: 16, sports: 5,cartoon: 4, tv: 1}
 
 function getMeme() {
     return gMeme
@@ -212,3 +212,4 @@ function getKeywordSearchCountMap() {
 function increaseKeywordSearchCount(keyword) {
     gKeywordSearchCountMap[keyword]++
 }
+

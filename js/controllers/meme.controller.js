@@ -12,8 +12,8 @@ function renderMeme() {
     const selectedImg = imgs.find(img => img.id === meme.selectedImgId)
 
     img.onload = function () {
+        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-
         meme.lines.forEach((line, idx) => {
             gCtx.font = `${line.size}px ${line.font}`
             gCtx.textAlign = line.align

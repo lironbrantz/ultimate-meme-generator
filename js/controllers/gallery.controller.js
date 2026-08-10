@@ -4,7 +4,7 @@ function renderGallery() {
     const imgs = getImgs()
 
     const strHTMLs = imgs.map(img => {
-        return `<img src="${img.url}" onclick="onImgSelect(${img.id})">`
+        return `<img src="${img.url}" alt="${img.keywords.join(', ')}" onclick="onImgSelect(${img.id})">`
     })
 
     document.querySelector('.meme-gallery').innerHTML = strHTMLs.join('')
@@ -20,11 +20,10 @@ function renderSavedMemes() {
 
     const strHTMLs = savedMemes.map((meme, idx) => {
         const img = getImgs().find(img => img.id === meme.selectedImgId)
+        const altText = meme.lines.map(line => line.txt).join(', ')
 
         return `
-            <img
-                src="${img.url}"
-                onclick="onSavedMemeSelect(${idx})">
+            <img src="${img.url}" alt="${altText}" onclick="onSavedMemeSelect(${idx})">
         `
     })
 
