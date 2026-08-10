@@ -15,6 +15,8 @@
             <img src="img/logo/LOGO.png" alt="Meme Generator">
         </div>
 
+        <button class="menu-btn" onclick="onToggleMenu()">☰</button>
+
         <nav class="main-nav">
             <a href="#" onclick="onNavTo('gallery')">Gallery</a>
             <a href="#" onclick="onNavTo('memes')">Memes</a>
@@ -135,6 +137,14 @@
                         <img src="img/icons/paint-board-and-brush.png" alt="Text color">
                         <input class="line-color" type="color" oninput="onSetLineColor(this.value)">
                     </label>
+
+                    <label class="color-btn">
+                        <img src="img/icons/text stroke.png" alt="Stroke color">
+                        <input
+                            class="line-stroke-color"
+                            type="color"
+                            oninput="onSetLineStrokeColor(this.value)">
+                    </label>
                 </div>
 
                 <div class="position-actions">
@@ -159,8 +169,33 @@
             </div>
         </section>
 
-        <section id="about" class="hidden"></section>
+        <section id="about" class="about hidden">
+            <h2>About Me</h2>
+
+            <p>
+                Hi, I'm Liron. This meme generator was built as part of my Coding Academy project.
+            </p>
+
+            <div class="social-links">
+                <a href="YOUR_LINKEDIN_URL" target="_blank">
+                    <img src="img/icons/linkedin-logo.png" alt="LinkedIn">
+                </a>
+
+                <a href="YOUR_FACEBOOK_URL" target="_blank">
+                    <img src="img/icons/facebook-logo.png" alt="Facebook">
+                </a>
+
+                <a href="https://github.com/lironbrantz" target="_blank">
+                    <img src="img/icons/github-logo.png" alt="GitHub">
+                </a>
+            </div>
+        </section>
     </main>
+
+    <footer class="main-footer">
+        <img src="img/logo/LOGO.png" alt="Meme Generator">
+        <p>All rights reserved 2026</p>
+    </footer>
 
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>

@@ -4,10 +4,18 @@
 
 body {
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
 }
 
+main {
+    flex: 1;
+}
+
 .main-header {
+    position: relative;
     height: 70px;
     padding: 0 30px;
     display: flex;
@@ -29,6 +37,15 @@ body {
 .main-nav a {
     color: white;
     text-decoration: none;
+}
+
+.menu-btn {
+    display: none;
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 .gallery-tools {
@@ -318,6 +335,50 @@ body {
     opacity: 0.8;
 }
 
+.about {
+    max-width: 700px;
+    min-height: calc(100vh - 250px);
+    margin: 0 auto;
+    padding: 70px 30px 30px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.about h2 {
+    margin-top: 0;
+    color: #ff7f00;
+}
+
+.about p {
+    line-height: 1.5;
+}
+
+.social-links {
+    margin-top: auto;
+}
+
+.social-links a {
+    text-decoration: none;
+}
+
+.social-links img {
+    width: 32px;
+    margin: 0 8px;
+}
+
+.main-footer {
+    padding: 30px;
+    text-align: center;
+    background-color: #ff7f00;
+    color: white;
+}
+
+.main-footer img {
+    width: 120px;
+}
+
 @media (max-width: 800px) {
     .meme-editor {
         flex-direction: column;
@@ -335,11 +396,31 @@ body {
 
 @media (max-width: 600px) {
     .main-header {
+        height: auto;
+        min-height: 70px;
         padding: 0 15px;
+        flex-wrap: wrap;
+    }
+
+    .menu-btn {
+        display: block;
     }
 
     .main-nav {
-        gap: 15px;
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 0 20px;
+        background-color: #ff7f00;
+    }
+
+    .main-nav.open {
+        display: flex;
+    }
+
+    .main-nav a {
+        padding: 10px 0;
     }
 
     .gallery-tools {
@@ -361,6 +442,39 @@ body {
         margin-block: 20px;
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 12px;
+    }
+
+    .meme-editor {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .meme-controls {
+        gap: 8px;
+    }
+
+    .line-input,
+    .line-font,
+    .meme-controls button,
+    .color-btn {
+        height: 44px;
+    }
+
+    .line-actions button,
+    .font-size-actions button,
+    .align-actions button,
+    .position-actions button,
+    .rotate-actions button,
+    .color-btn {
+        width: 44px;
+    }
+
+    .line-actions,
+    .font-size-actions,
+    .align-actions,
+    .position-actions,
+    .rotate-actions {
+        justify-content: center;
     }
 }
 

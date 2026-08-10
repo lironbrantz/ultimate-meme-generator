@@ -12,8 +12,14 @@ function onInit() {
     renderStickers()
 }
 
+function onToggleMenu() {
+    document.querySelector('.main-nav').classList.toggle('open')
+}
+
 function onNavTo(page) {
     document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'))
     document.getElementById(page).classList.remove('hidden')
+
+    document.querySelector('.main-nav').classList.remove('open')
 }
 
