@@ -19,11 +19,10 @@ function renderSavedMemes() {
     const savedMemes = getSavedMemes()
 
     const strHTMLs = savedMemes.map((meme, idx) => {
-        const img = getImgs().find(img => img.id === meme.selectedImgId)
         const altText = meme.lines.map(line => line.txt).join(', ')
 
         return `
-            <img src="${img.url}" alt="${altText}" onclick="onSavedMemeSelect(${idx})">
+            <img src="${meme.preview}" alt="${altText}" onclick="onSavedMemeSelect(${idx})">
         `
     })
 

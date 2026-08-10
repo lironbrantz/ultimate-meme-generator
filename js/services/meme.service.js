@@ -46,6 +46,10 @@ function getImgs() {
     return gImgs.filter(img => { return img.keywords.some(keyword => keyword.includes(gFilterBy)) })
 }
 
+function getImgById(id) {
+    return gImgs.find(img => img.id === id)
+}
+
 function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
@@ -120,8 +124,10 @@ function deleteLine() {
     }
 }
 
-function saveMeme() {
+function saveMeme(preview) {
     const memeCopy = JSON.parse(JSON.stringify(gMeme))
+
+    memeCopy.preview = preview
 
     gSavedMemes.push(memeCopy)
     saveToStorage(STORAGE_KEY, gSavedMemes)

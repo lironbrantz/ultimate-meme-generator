@@ -6,11 +6,10 @@ var gIsDragging = false
 var gDidDrag = false
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
-function renderMeme() {
+function renderMeme(showSelection = true, onRenderDone = null) {
     const img = new Image()
     const meme = getMeme()
-    const imgs = getImgs()
-    const selectedImg = imgs.find(img => img.id === meme.selectedImgId)
+    const selectedImg = getImgById(meme.selectedImgId)
 
     img.onload = function () {
         const ratio = img.height / img.width
@@ -31,7 +30,7 @@ function renderMeme() {
             gCtx.strokeStyle = 'black'
             gCtx.lineWidth = 2
 
-            if (idx === meme.selectedLineIdx) {
+            if (showSelection && idx === meme.selectedLineIdx) {
                 const textWidth = gCtx.measureText(line.txt).width
                 let boxX = line.x - textWidth / 2
 
@@ -60,17 +59,23 @@ function renderMeme() {
 
             gCtx.restore()
         })
+
+        if (onRenderDone) onRenderDone()
     }
 
     img.src = selectedImg.url
 }
 function onDownloadMeme() {
-    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+    renderMeme(false, () => {
+        const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
 
-    const downloadLink = document.createElement('a')
-    downloadLink.href = imgDataUrl
-    downloadLink.download = 'meme.jpg'
-    downloadLink.click()
+        const downloadLink = document.createElement('a')
+        downloadLink.href = imgDataUrl
+        downloadLink.download = 'meme.jpg'
+        downloadLink.click()
+
+        renderMeme()
+    })
 }
 
 
@@ -251,8 +256,14 @@ function onDeleteLine() {
 
 
 function onSaveMeme() {
-    saveMeme()
-    renderSavedMemes()
+    renderMeme(false, () => {
+        const preview = gElCanvas.toDataURL('image/jpeg')
+
+        saveMeme(preview)
+        renderSavedMemes()
+
+        renderMeme()
+    })
 }
 
 function onAddSticker(emoji) {
@@ -333,24 +344,23 @@ function onUp(ev) {
 }
 
 function onWebShare() {
-    gElCanvas.toBlob(blob => {
-        const file = new File([blob], 'meme.png', {
-            type: 'image/png'
-        })
+    renderMeme(false, () => {
+        gElCanvas.toBlob(blob => {
+            renderMeme()
 
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            navigator.share({ files: [file] })
-        } else {
-            onShareMeme()
-        }
+            const file = new File([blob], 'meme.png', {
+                type: 'image/png'
+            })
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                navigator.share({ files: [file] })
+            } else {
+                uploadImg(blob, onSuccess)
+            }
+        }, 'image/png')
     })
 }
 
-function onShareMeme() {
-    gElCanvas.toBlob(blob => {
-        uploadImg(blob, onSuccess)
-    })
-}
 
 function onSuccess(uploadedImgUrl) {
     const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
