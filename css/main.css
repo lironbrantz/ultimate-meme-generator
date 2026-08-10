@@ -309,9 +309,6 @@ main {
     transform: scale(1.2);
 }
 
-.hidden {
-    display: none;
-}
 .keywords {
     max-width: 1000px;
     margin: 15px auto 25px;
@@ -476,5 +473,9 @@ main {
     .rotate-actions {
         justify-content: center;
     }
+}
+
+.hidden {
+    display: none;
 }
 
