@@ -331,6 +331,20 @@ function onUp(ev) {
     gDidDrag = false
 }
 
+function onWebShare() {
+    gElCanvas.toBlob(blob => {
+        const file = new File([blob], 'meme.png', {
+            type: 'image/png'
+        })
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            navigator.share({ files: [file] })
+        } else {
+            onShareMeme()
+        }
+    })
+}
+
 function onShareMeme() {
     gElCanvas.toBlob(blob => {
         uploadImg(blob, onSuccess)
