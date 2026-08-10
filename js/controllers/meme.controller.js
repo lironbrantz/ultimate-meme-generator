@@ -3,6 +3,7 @@
 var gElCanvas
 var gCtx
 var gIsDragging = false
+var gDidDrag = false
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function renderMeme() {
@@ -90,6 +91,8 @@ function onSwitchLine() {
 }
 
 function onCanvasClick(ev) {
+    gDidDrag = false
+
     const pos = getEvPos(ev)
 
     const rect = gElCanvas.getBoundingClientRect()
@@ -130,6 +133,61 @@ function onCanvasClick(ev) {
         }
     })
 }
+function onCanvasDoubleClick(ev) {
+    const pos = getEvPos(ev)
+
+    const rect = gElCanvas.getBoundingClientRect()
+    const scaleX = gElCanvas.width / rect.width
+    const scaleY = gElCanvas.height / rect.height
+
+    const x = pos.x * scaleX
+    const y = pos.y * scaleY
+
+    const meme = getMeme()
+
+    meme.lines.find((line, idx) => {
+        gCtx.font = `${line.size}px ${line.font}`
+
+        const textWidth = gCtx.measureText(line.txt).width
+
+        let boxX = line.x - textWidth / 2
+
+        if (line.align === 'left') boxX = line.x
+        if (line.align === 'right') boxX = line.x - textWidth
+
+        const isInside =
+            x >= boxX &&
+            x <= boxX + textWidth &&
+            y >= line.y - line.size &&
+            y <= line.y
+
+        if (isInside) {
+            setLine(idx)
+            openCanvasTextInput(line)
+
+            return true
+        }
+    })
+}
+
+function openCanvasTextInput(line) {
+    const elInput = document.querySelector('.canvas-text-input')
+
+    const rect = gElCanvas.getBoundingClientRect()
+    const scale = rect.width / gElCanvas.width
+
+    elInput.value = line.txt
+    elInput.style.left = `${line.x * scale}px`
+    elInput.style.top = `${(line.y - line.size) * scale}px`
+
+    elInput.classList.remove('hidden')
+    elInput.focus()
+}
+
+function onCloseCanvasTextInput() {
+    document.querySelector('.canvas-text-input').classList.add('hidden')
+}
+
 function renderControls() {
     const meme = getMeme()
     const line = meme.lines[meme.selectedLineIdx]
@@ -221,6 +279,8 @@ function getEvPos(ev) {
 function onMove(ev) {
     if (!gIsDragging) return
 
+    gDidDrag = true
+
     const pos = getEvPos(ev)
 
     const rect = gElCanvas.getBoundingClientRect()
@@ -233,8 +293,16 @@ function onMove(ev) {
     moveLine(x, y)
     renderMeme()
 }
-function onUp() {
+function onUp(ev) {
+    if (ev.type === 'touchend' && gIsDragging && !gDidDrag) {
+        const meme = getMeme()
+        const line = meme.lines[meme.selectedLineIdx]
+
+        openCanvasTextInput(line)
+    }
+
     gIsDragging = false
+    gDidDrag = false
 }
 
 function onShareMeme() {

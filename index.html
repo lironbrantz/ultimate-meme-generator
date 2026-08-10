@@ -59,10 +59,27 @@
         </section>
 
         <section id="editor" class="meme-editor hidden">
-            <canvas class="meme-canvas" width="500" height="500" onmousedown="onCanvasClick(event)"
-                onmousemove="onMove(event)" onmouseup="onUp()" ontouchstart="onCanvasClick(event)"
-                ontouchmove="onMove(event)" ontouchend="onUp()">
-            </canvas>
+            <div class="canvas-container">
+
+                <canvas class="meme-canvas"
+                    width="500"
+                    height="500"
+                    onmousedown="onCanvasClick(event)"
+                    onmousemove="onMove(event)"
+                    onmouseup="onUp(event)"
+                    ontouchstart="onCanvasClick(event)"
+                    ontouchmove="onMove(event)"
+                    ontouchend="onUp(event)"
+                    ondblclick="onCanvasDoubleClick(event)">
+                </canvas>
+
+                <input
+                    class="canvas-text-input hidden"
+                    type="text"
+                    oninput="onSetLineTxt(this.value)"
+                    onblur="onCloseCanvasTextInput()">
+
+            </div>
 
             <div class="meme-controls">
                 <input class="line-input" type="text" placeholder="Enter your meme text here"
@@ -148,3 +165,4 @@
 </body>
 
 </html>
+
