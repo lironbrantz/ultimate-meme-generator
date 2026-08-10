@@ -31,8 +31,8 @@ var gImgs = [
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center' },
-    { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center' }]
+    lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center', angle: 0 },
+    { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center', angle: 0 }]
 }
 var gKeywordSearchCountMap = { funny: 12, politics: 6, animal: 8, dog: 10, baby: 7, movie: 14, cat: 16, sports: 5, cartoon: 4, tv: 1 }
 
@@ -67,7 +67,7 @@ function decreaseFontSize() {
 }
 
 function addLine() {
-    const newLine = { txt: 'New Line', size: 20, color: 'black', x: 250, y: 250, font: 'Arial', align: 'center' }
+    const newLine = { txt: 'New Line', size: 20, color: 'black', x: 250, y: 250, font: 'Arial', align: 'center', angle: 0 }
     gMeme.lines.push(newLine)
 }
 
@@ -100,6 +100,14 @@ function upTextLine() {
 
 function downTextLine() {
     gMeme.lines[gMeme.selectedLineIdx].y += 5
+}
+
+function rotateLeft() {
+    gMeme.lines[gMeme.selectedLineIdx].angle -= 5
+}
+
+function rotateRight() {
+    gMeme.lines[gMeme.selectedLineIdx].angle += 5
 }
 
 function deleteLine() {
@@ -139,7 +147,8 @@ function addSticker(emoji) {
         x: 250,
         y: 250,
         font: 'Arial',
-        align: 'center'
+        align: 'center',
+        angle: 0
     }
 
     gMeme.lines.push(sticker)

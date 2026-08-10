@@ -41,8 +41,15 @@ function renderMeme() {
 
             gCtx.strokeStyle = 'black'
 
-            gCtx.strokeText(line.txt, line.x, line.y)
-            gCtx.fillText(line.txt, line.x, line.y)
+            gCtx.save()
+
+            gCtx.translate(line.x, line.y)
+            gCtx.rotate((line.angle || 0) * Math.PI / 180)
+
+            gCtx.strokeText(line.txt, 0, 0)
+            gCtx.fillText(line.txt, 0, 0)
+
+            gCtx.restore()
         })
     }
 
@@ -214,6 +221,16 @@ function onUpTextLine() {
 
 function onDownTextLine() {
     downTextLine()
+    renderMeme()
+}
+
+function onRotateLeft() {
+    rotateLeft()
+    renderMeme()
+}
+
+function onRotateRight() {
+    rotateRight()
     renderMeme()
 }
 

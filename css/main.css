@@ -152,7 +152,8 @@ body {
 .font-size-actions,
 .align-actions,
 .font-actions,
-.position-actions {
+.position-actions,
+.rotate-actions {
     display: flex;
     gap: 10px;
 }
@@ -192,6 +193,7 @@ body {
 .font-size-actions button,
 .align-actions button,
 .position-actions button,
+.rotate-actions button,
 .color-btn {
     width: 52px;
 }
@@ -204,7 +206,8 @@ body {
     object-fit: contain;
 }
 
-.position-actions button {
+.position-actions button,
+.rotate-actions button {
     font-size: 1.5rem;
     font-weight: bold;
 }
