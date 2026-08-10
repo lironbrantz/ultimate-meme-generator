@@ -31,8 +31,8 @@ var gImgs = [
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center', angle: 0 },
-    { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center', angle: 0 }]
+    lines: [{ txt: 'Hello', size: 20, color: 'red', x: 250, y: 60, font: 'Arial', align: 'center', angle: 0, strokeColor: '#000000' },
+    { txt: 'World', size: 20, color: 'blue', x: 250, y: 460, font: 'Arial', align: 'center', angle: 0, strokeColor: '#000000' }]
 }
 var gKeywordSearchCountMap = { funny: 12, politics: 6, animal: 8, dog: 10, baby: 7, movie: 14, cat: 16, sports: 5, cartoon: 4, tv: 1 }
 
@@ -67,12 +67,18 @@ function increaseFontSize() {
 }
 
 function decreaseFontSize() {
-    gMeme.lines[gMeme.selectedLineIdx].size -= 5
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+
+    if (line.size <= 10) return
+
+    line.size -= 5
 }
 
 function addLine() {
-    const newLine = { txt: 'New Line', size: 20, color: 'black', x: 250, y: 250, font: 'Arial', align: 'center', angle: 0 }
+    const newLine = { txt: 'New Line', size: 20, color: 'black', x: 250, y: 250, font: 'Arial', align: 'center', angle: 0, strokeColor: '#000000' }
+
     gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 function switchLine() {
@@ -82,6 +88,10 @@ function switchLine() {
 
 function setLine(idx) {
     gMeme.selectedLineIdx = idx
+}
+
+function setLineStrokeColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
 }
 
 function setFont(font) {
@@ -126,8 +136,10 @@ function deleteLine() {
 
 function saveMeme(preview) {
     const memeCopy = JSON.parse(JSON.stringify(gMeme))
+    const img = getImgById(gMeme.selectedImgId)
 
     memeCopy.preview = preview
+    memeCopy.imgUrl = img.url
 
     gSavedMemes.push(memeCopy)
     saveToStorage(STORAGE_KEY, gSavedMemes)
@@ -154,10 +166,12 @@ function addSticker(emoji) {
         y: 250,
         font: 'Arial',
         align: 'center',
-        angle: 0
+        angle: 0,
+        strokeColor: '#000000'
     }
 
     gMeme.lines.push(sticker)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 function getEmojis() {
@@ -211,7 +225,7 @@ async function uploadImg(imgData, onSuccess) {
 
 function setImgFromDevice(img) {
     const newImg = {
-        id: gImgs.length + 1,
+        id: Date.now(),
         url: img.src,
         keywords: []
     }

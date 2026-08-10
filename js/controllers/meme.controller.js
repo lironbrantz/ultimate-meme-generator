@@ -30,29 +30,30 @@ function renderMeme(showSelection = true, onRenderDone = null) {
             gCtx.strokeStyle = 'black'
             gCtx.lineWidth = 2
 
-            if (showSelection && idx === meme.selectedLineIdx) {
-                const textWidth = gCtx.measureText(line.txt).width
-                let boxX = line.x - textWidth / 2
+            const textWidth = gCtx.measureText(line.txt).width
 
-                if (line.align === 'left') boxX = line.x
-                if (line.align === 'right') boxX = line.x - textWidth
+            let boxX = -textWidth / 2
 
-                gCtx.strokeStyle = 'white'
-
-                gCtx.strokeRect(
-                    boxX - 5,
-                    line.y - line.size,
-                    textWidth + 10,
-                    line.size + 10
-                )
-            }
-
-            gCtx.strokeStyle = 'black'
+            if (line.align === 'left') boxX = 0
+            if (line.align === 'right') boxX = -textWidth
 
             gCtx.save()
 
             gCtx.translate(line.x, line.y)
             gCtx.rotate((line.angle || 0) * Math.PI / 180)
+
+            if (showSelection && idx === meme.selectedLineIdx) {
+                gCtx.strokeStyle = 'white'
+
+                gCtx.strokeRect(
+                    boxX - 5,
+                    -line.size,
+                    textWidth + 10,
+                    line.size + 10
+                )
+            }
+
+            gCtx.strokeStyle = line.strokeColor
 
             gCtx.strokeText(line.txt, 0, 0)
             gCtx.fillText(line.txt, 0, 0)
@@ -63,7 +64,7 @@ function renderMeme(showSelection = true, onRenderDone = null) {
         if (onRenderDone) onRenderDone()
     }
 
-    img.src = selectedImg.url
+    img.src = selectedImg ? selectedImg.url : meme.imgUrl
 }
 function onDownloadMeme() {
     renderMeme(false, () => {
@@ -103,6 +104,7 @@ function onDecreaseFontSize() {
 function onAddLine() {
     addLine()
     renderMeme()
+    renderControls()
 }
 
 function onSwitchLine() {
@@ -215,7 +217,13 @@ function renderControls() {
 
     document.querySelector('.line-input').value = line.txt
     document.querySelector('.line-color').value = line.color
+    document.querySelector('.line-stroke-color').value = line.strokeColor
     document.querySelector('.line-font').value = line.font
+}
+
+function onSetLineStrokeColor(color) {
+    setLineStrokeColor(color)
+    renderMeme()
 }
 
 function onSetFont(font) {
@@ -269,6 +277,7 @@ function onSaveMeme() {
 function onAddSticker(emoji) {
     addSticker(emoji)
     renderMeme()
+    renderControls()
 }
 
 function renderStickers() {
