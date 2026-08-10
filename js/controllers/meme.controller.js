@@ -13,9 +13,18 @@ function renderMeme() {
     const selectedImg = imgs.find(img => img.id === meme.selectedImgId)
 
     img.onload = function () {
+        const ratio = img.height / img.width
+
+        gElCanvas.height = gElCanvas.width * ratio
+
         gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         meme.lines.forEach((line, idx) => {
+
+            if (line.y > gElCanvas.height) {
+                line.y = gElCanvas.height - 20
+            }
+
             gCtx.font = `${line.size}px ${line.font}`
             gCtx.textAlign = line.align
             gCtx.fillStyle = line.color
